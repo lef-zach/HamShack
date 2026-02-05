@@ -46,21 +46,44 @@ build-pi:
 
 # Install dependencies
 install:
-	@echo "📦 Installing dependencies..."
-	@if ! command -v cargo >/dev/null 2>&1; then \
-		echo "🦀 Rust/cargo not found. Please install Rust first:"; \
-		echo "   Windows: https://www.rust-lang.org/tools/install"; \
-		echo "   Linux/Mac: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"; \
-		exit 1; \
+	@echo "🔥 Installing HamShack dependencies..."
+	@echo "🔍 Checking for Rust..."
+	@if command -v cargo >/dev/null 2>&1; then \
+		echo "✅ Rust found: $(cargo --version)"; \
+	else \
+		echo "🦀 Installing Rust..."; \
+		if command -v curl >/dev/null 2>&1; then \
+			curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y; \
+			export PATH="$$HOME/.cargo/bin:$$PATH"; \
+		else \
+			echo "❌ Please install Rust manually: https://www.rust-lang.org/tools/install"; \
+			exit 1; \
+		fi; \
 	fi
-	@if ! command -v npm >/dev/null 2>&1; then \
-		echo "📦 npm not found. Please install Node.js first:"; \
-		echo "   Windows: https://nodejs.org/"; \
-		echo "   Linux/Mac: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs"; \
-		exit 1; \
+	@echo "🔍 Checking for Node.js..."
+	@if command -v npm >/dev/null 2>&1; then \
+		echo "✅ Node.js found: $(node --version)"; \
+		echo "✅ npm found: $(npm --version)"; \
+	else \
+		echo "📦 Installing Node.js..."; \
+		if command -v curl >/dev/null 2>&1 && command -v sudo >/dev/null 2>&1; then \
+			curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -; \
+			sudo apt-get install -y nodejs; \
+		elif command -v brew >/dev/null 2>&1; then \
+			brew install node; \
+		elif command -v winget >/dev/null 2>&1; then \
+			winget install OpenJS.NodeJS.LTS; \
+		else \
+			echo "❌ Please install Node.js manually: https://nodejs.org/"; \
+			sudo apt-get update && sudo apt-get install -y nodejs npm || true; \
+		fi; \
 	fi
+	@echo "📦 Installing Rust dependencies..."
+	@export PATH="$$HOME/.cargo/bin:$$PATH"; \
 	cd backend && cargo fetch
+	@echo "📦 Installing Node.js dependencies..."
 	cd frontend && npm install
+	@echo "✅ All dependencies installed successfully!"
 
 # Run tests
 test:

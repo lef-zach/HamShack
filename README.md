@@ -55,26 +55,33 @@ make build-pi
 ```
 
 ### Getting Started (Git Clone)
+
+#### Automatic Installation (Recommended)
 ```bash
-# Clone the repository
+# Clone and auto-install dependencies
+git clone https://github.com/lef-zach/HamShack.git
+cd HamShack
+./scripts/install-deps.sh
+make install
+make build
+make dev
+```
+
+#### Manual Installation
+```bash
+# Clone repository
 git clone https://github.com/lef-zach/HamShack.git
 cd HamShack
 
-# Install Rust first (if not already installed)
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source $HOME/.cargo/env
-
-# Install Node.js (if not already installed)
-# Windows: https://nodejs.org/
-# Linux/Mac: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs
-
-# Install dependencies
+# Install dependencies (Makefile handles missing tools)
 make install
 
 # Build and run
 make build
 make dev
 ```
+
+Makefile will automatically detect and help install missing Rust/Node.js dependencies.
 
 ## Features
 
@@ -153,23 +160,31 @@ MIT License - See LICENSE file for details.
 
 ## Raspberry Pi Deployment
 
-### Quick Deployment
+### Fully Autonomous Deployment
+Simply run the setup script - it handles everything automatically:
+
 ```bash
-# On Raspberry Pi
+# On Raspberry Pi - one command deployment
+curl -fsSL https://raw.githubusercontent.com/lef-zach/HamShack/main/scripts/setup-pi.sh | bash
+```
+
+This will:
+- Install Rust and Node.js automatically
+- Build both backend and frontend
+- Configure as system service
+- Start HamShack on boot
+
+### Manual Deployment
+```bash
+# Clone and run setup
 git clone https://github.com/lef-zach/HamShack.git
-cd HamShack
+cd HamShack/bash scripts/setup-pi.sh
 
-# Install dependencies
-make install
+# Or run individual commands
+make install    # Auto-installs missing dependencies
+make build     # Builds the application
 
-# Build natively
-make build
-
-# Configure environment
-cp .env.example .env
-# Edit .env with your settings
-
-# Run the application
+# Run manually
 cd backend && ./target/release/hamshack
 ```
 

@@ -1,8 +1,8 @@
-# 🚀 HamShack - Next Generation Ham Radio Dashboard
+# HamShack - Next Generation Ham Radio Dashboard
 
 A high-performance, Raspberry Pi-optimized ham radio dashboard built with **Rust** backend and **React** frontend.
 
-## 🎯 Project Vision
+## Project Vision
 
 HamShack aims to replace OpenHamClock with:
 - **80% lower memory usage** (<50MB baseline)
@@ -10,7 +10,7 @@ HamShack aims to replace OpenHamClock with:
 - **AI-powered signal analysis** and propagation prediction
 - **Superior extensibility** via plugin system
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 HamShack/
@@ -30,7 +30,7 @@ HamShack/
 └── scripts/          # Build/deployment scripts
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Rust 1.70+
@@ -54,21 +54,21 @@ make build
 make build-pi
 ```
 
-## 🎛️ Features
+## Features
 
-### ✅ Implemented
+### Implemented
 - **Rust backend** with HTTP/2 + SSE streaming
 - **React frontend** with real-time updates
 - **Spot caching** with memory limits
 - **SDR integration** framework
 
-### 🚧 In Development
+### In Development
 - **SDR waterfall** visualization
 - **AI signal classification**
 - **Plugin system** for extensibility
 - **Raspberry Pi optimizations**
 
-## 🔧 Configuration
+## Configuration
 
 Copy `.env.example` to `.env` and customize:
 ```env
@@ -80,18 +80,18 @@ HAMSHACK_SDR_ENABLED=false
 HAMSHACK_SDR_DEVICE=rtlsdr
 ```
 
-## 🎯 Performance Targets
+## Performance Targets
 
 | Metric | Target | Status |
 |--------|--------|--------|
-| Memory Usage | <50MB | ✅ Initial build ~10MB |
-| CPU Usage | <10% idle | ✅ Rust efficiency |
-| Latency | <100ms | ✅ SSE streaming |
-| Boot Time | <15s | ✅ Fast startup |
+| Memory Usage | <50MB | Initial build ~10MB |
+| CPU Usage | <10% idle | Rust efficiency |
+| Latency | <100ms | SSE streaming |
+| Boot Time | <15s | Fast startup |
 
-## 🛠️ Development Roadmap
+## Development Roadmap
 
-### Phase 1: Foundation (Complete ✅)
+### Phase 1: Foundation (Complete)
 - [x] Rust backend with SSE
 - [x] React frontend
 - [x] Basic spot caching
@@ -111,7 +111,7 @@ HAMSHACK_SDR_DEVICE=rtlsdr
 - [ ] Plugin marketplace
 - [ ] Performance benchmarks
 
-## 🤝 Contributing
+## Contributing
 
 HamShack is designed for community development:
 - **Rust expertise** welcome for backend optimization
@@ -119,12 +119,12 @@ HamShack is designed for community development:
 - **SDR knowledge** for hardware integration
 - **AI/ML experience** for signal processing
 
-## 📜 License
+## License
 
 MIT License - See LICENSE file for details.
 
 ---
 
-**Built with ❤️ for the ham radio community**
+**Built for the ham radio community**
 
 *73 de HamShack!*

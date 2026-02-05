@@ -27,10 +27,10 @@ function App() {
   return (
     <div className="App">
       <header className="app-header">
-        <h1>🚀 HamShack - Next Generation Ham Radio Dashboard</h1>
+        <h1>HamShack - Next Generation Ham Radio Dashboard</h1>
         <div className="status-bar">
           <span className={`status ${backendConnected ? 'connected' : 'disconnected'}`}>
-            Backend: {backendConnected ? '✅ Connected' : '❌ Disconnected'}
+            Backend: {backendConnected ? 'Connected' : 'Disconnected'}
           </span>
           <span>SSE Updates: {count}</span>
         </div>

@@ -55,7 +55,7 @@ impl SDRManager {
             return Err("SDR already running".to_string());
         }
         
-        println!("📡 Starting SDR: {} @ {} Hz", self.config.device, self.config.frequency);
+        println!("Starting SDR: {} @ {} Hz", self.config.device, self.config.frequency);
         
         let config = self.config.clone();
         let spectrum_tx = self.spectrum_tx.take().unwrap();
@@ -74,7 +74,7 @@ impl SDRManager {
             return Err("SDR not running".to_string());
         }
         
-        println!("📡 Stopping SDR");
+        println!("Stopping SDR");
         self.is_running = false;
         
         Ok(())
@@ -86,7 +86,7 @@ impl SDRManager {
         }
         
         self.config.frequency = freq;
-        println!("📡 Tuning to {} Hz", freq);
+        println!("Tuning to {} Hz", freq);
         
         Ok(())
     }
@@ -123,7 +123,7 @@ impl SDRThread {
     }
     
     fn run(&mut self) {
-        println!("📡 SDR thread started");
+        println!("SDR thread started");
         
         // Simulate SDR data acquisition
         let mut buffer = vec![Complex32::new(0.0, 0.0); self.config.fft_size];

@@ -24,7 +24,7 @@ async fn main() {
     // Initialize logging
     tracing_subscriber::fmt::init();
     
-    println!("🚀 HamShack Rust Backend Starting...");
+    println!("HamShack Rust Backend Starting...");
     
     // Load configuration
     let config = config::Config::load().expect("Failed to load configuration");
@@ -52,9 +52,9 @@ async fn main() {
     
     let addr = SocketAddr::from(([0, 0, 0, 0], config.port));
     
-    println!("📡 Server listening on http://{}", addr);
-    println!("🌐 SSE endpoint: http://{}/api/sse", addr);
-    println!("📊 SDR endpoints available");
+    println!("Server listening on http://{}", addr);
+    println!("SSE endpoint: http://{}/api/sse", addr);
+    println!("SDR endpoints available");
     
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();

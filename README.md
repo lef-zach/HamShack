@@ -54,6 +54,20 @@ make build
 make build-pi
 ```
 
+### Getting Started (Git Clone)
+```bash
+# Clone the repository
+git clone https://github.com/lef-zach/HamShack.git
+cd HamShack
+
+# Install dependencies
+make install
+
+# Build and run
+make build
+make dev
+```
+
 ## Features
 
 ### Implemented

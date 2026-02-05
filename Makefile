@@ -53,6 +53,12 @@ install:
 		echo "   Linux/Mac: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"; \
 		exit 1; \
 	fi
+	@if ! command -v npm >/dev/null 2>&1; then \
+		echo "📦 npm not found. Please install Node.js first:"; \
+		echo "   Windows: https://nodejs.org/"; \
+		echo "   Linux/Mac: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs"; \
+		exit 1; \
+	fi
 	cd backend && cargo fetch
 	cd frontend && npm install
 

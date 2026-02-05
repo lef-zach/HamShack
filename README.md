@@ -64,6 +64,10 @@ cd HamShack
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 
+# Install Node.js (if not already installed)
+# Windows: https://nodejs.org/
+# Linux/Mac: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs
+
 # Install dependencies
 make install
 

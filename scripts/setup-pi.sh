@@ -26,7 +26,7 @@ if ! command -v rustc &> /dev/null; then
 fi
 
 # Install Node.js if not present
-if ! command -v node &> /dev/null; then
+if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
     echo "📦 Installing Node.js..."
     curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
     sudo apt-get install -y nodejs

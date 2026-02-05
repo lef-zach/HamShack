@@ -47,6 +47,12 @@ build-pi:
 # Install dependencies
 install:
 	@echo "📦 Installing dependencies..."
+	@if ! command -v cargo >/dev/null 2>&1; then \
+		echo "🦀 Rust/cargo not found. Please install Rust first:"; \
+		echo "   Windows: https://www.rust-lang.org/tools/install"; \
+		echo "   Linux/Mac: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"; \
+		exit 1; \
+	fi
 	cd backend && cargo fetch
 	cd frontend && npm install
 

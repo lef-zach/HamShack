@@ -60,6 +60,10 @@ make build-pi
 git clone https://github.com/lef-zach/HamShack.git
 cd HamShack
 
+# Install Rust first (if not already installed)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+
 # Install dependencies
 make install
 

@@ -35,6 +35,7 @@ cd HamShack
 
 # Run autonomous dependency installer
 echo "📦 Running autonomous dependency installer..."
+chmod +x scripts/install-deps.sh
 ./scripts/install-deps.sh
 
 # Install project dependencies

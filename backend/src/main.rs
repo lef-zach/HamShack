@@ -41,13 +41,13 @@ async fn main() {
     
     // Build router with SSE endpoint
     let app = Router::new()
-        .route("/", get(root))
+        .route("/", get(|| async { "HamShack Running" }))
         .route("/api/health", get(health))
         .route("/api/sse", get(sse_handler))
         .route("/api/sdr/status", get(sdr_status))
         .route("/api/sdr/start", get(sdr_start))
         .route("/api/sdr/stop", get(sdr_stop))
-        .route("/api/sdr/frequency/:freq", get(set_frequency))
+        .route("/api/sdr/frequency/{freq}", get(set_frequency))
         .with_state(state);
     
     let addr = SocketAddr::from(([0, 0, 0, 0], config.port));
@@ -60,9 +60,9 @@ async fn main() {
     axum::serve(listener, app).await.unwrap();
 }
 
-async fn root() -> &'static str {
-    "HamShack Rust Backend - Next Generation Ham Radio Dashboard"
-}
+// async fn root() -> &'static str {
+//     "HamShack Rust Backend - Next Generation Ham Radio Dashboard"
+// }
 
 async fn health() -> &'static str {
     "OK"
@@ -95,7 +95,7 @@ async fn sse_handler(
                 Ok(Event::default().data(data.to_string()))
             }
         })
-        .map(|fut| fut);
+        .then(|fut| fut);
 
     Sse::new(stream)
 }

@@ -90,7 +90,7 @@ install-pi-toolchain:
 package-pi:
 	@echo "📦 Creating Raspberry Pi deployment package..."
 	mkdir -p dist/pi
-	cp backend/target/armv7-unknown-linux-gnueabihf/release/hamlock dist/pi/
+	cp backend/target/armv7-unknown-linux-gnueabihf/release/hamshack dist/pi/
 	cp -r frontend/dist dist/pi/frontend
 	cp .env.example dist/pi/.env
 	cp scripts/setup-pi.sh dist/pi/

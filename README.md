@@ -128,3 +128,42 @@ MIT License - See LICENSE file for details.
 **Built for the ham radio community**
 
 *73 de HamShack!*
+
+## Raspberry Pi Deployment
+
+### Quick Deployment
+```bash
+# On Raspberry Pi
+git clone https://github.com/lef-zach/HamShack.git
+cd HamShack
+
+# Install dependencies
+make install
+
+# Build natively
+make build
+
+# Configure environment
+cp .env.example .env
+# Edit .env with your settings
+
+# Run the application
+cd backend && ./target/release/hamshack
+```
+
+### Cross-Compilation Deployment
+```bash
+# On development machine
+make build-pi4  # For Pi 3/4
+# or make build-pi5 for Pi 5
+make package-pi
+
+# Transfer to Pi and run
+scp -r dist/pi/ pi@raspberrypi.local:HamShack/
+ssh pi@raspberrypi.local "cd HamShack && ./hamshack"
+```
+
+### Pi Model Support
+- **Raspberry Pi 3**: `make build-pi3` (ARMv7)
+- **Raspberry Pi 4**: `make build-pi4` (ARMv7) 
+- **Raspberry Pi 5**: `make build-pi5` (ARM64)

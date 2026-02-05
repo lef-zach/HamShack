@@ -4,6 +4,7 @@
 # Fully automated deployment for Raspberry Pi
 
 set -e
+set -x  # Enable debug mode to see what's happening
 
 echo "🔥 HamShack Raspberry Pi Autonomous Setup"
 echo "=========================================="
@@ -35,8 +36,24 @@ cd HamShack
 
 # Run autonomous dependency installer
 echo "📦 Running autonomous dependency installer..."
-chmod +x scripts/install-deps.sh
-./scripts/install-deps.sh
+if [ -f "scripts/install-deps.sh" ]; then
+    chmod +x scripts/install-deps.sh
+    bash scripts/install-deps.sh
+else
+    echo "❌ install-deps.sh not found - running manual dependency installation"
+    # Manual dependency installation fallback
+    if ! command -v cargo >/dev/null 2>&1; then
+        echo "🦀 Installing Rust..."
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        source "$HOME/.cargo/env"
+    fi
+    
+    if ! command -v node >/dev/null 2>&1 || ! command -v npm >/dev/null 2>&1; then
+        echo "📦 Installing Node.js..."
+        curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+    fi
+fi
 
 # Install project dependencies
 echo "📦 Installing project dependencies..."

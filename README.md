@@ -1,8 +1,8 @@
-# 🚀 HamShack - Next Generation Ham Radio Dashboard
+#  HamShack - Next Generation Ham Radio Dashboard
 
 A high-performance, Raspberry Pi-optimized ham radio dashboard built with **Rust** backend and **React** frontend.
 
-## 🎯 Project Vision
+##  Project Vision
 
 HamShack aims to replace OpenHamClock with:
 - **80% lower memory usage** (<50MB baseline)
@@ -10,7 +10,7 @@ HamShack aims to replace OpenHamClock with:
 - **AI-powered signal analysis** and propagation prediction
 - **Superior extensibility** via plugin system
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 HamShack/
@@ -30,7 +30,7 @@ HamShack/
 └── scripts/          # Build/deployment scripts
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Rust 1.70+

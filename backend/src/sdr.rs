@@ -4,6 +4,7 @@ use rand::Rng;
 use rayon::prelude::*;
 use rustfft::algorithm::Radix4;
 use rustfft::Fft;
+use serde::Serialize;
 use std::sync::Arc;
 use std::thread;
 use std::time::{Duration, Instant};
@@ -79,6 +80,7 @@ impl SDRManager {
 
         println!("Stopping SDR");
         self.is_running = false;
+        self.spectrum_tx.take(); // This will break the SDR thread
 
         Ok(())
     }
@@ -103,8 +105,16 @@ impl SDRManager {
         }
     }
 
-    pub fn get_spectrum_receiver(&self) -> Option<Receiver<SpectrumData>> {
-        self.spectrum_rx.clone()
+    pub fn get_spectrum_data(&self) -> Option<SpectrumData> {
+        if !self.is_running {
+            return None;
+        }
+
+        // Get latest spectrum data from receiver
+        match self.spectrum_rx.as_ref().unwrap().try_recv() {
+            Ok(data) => Some(data),
+            Err(_) => None,
+        }
     }
 }
 
@@ -187,7 +197,7 @@ impl SDRThread {
     }
 }
 
-#[derive(Debug, Clone, serde::Serialize)]
+#[derive(Debug, Clone, Serialize)]
 pub struct SDRStatus {
     pub is_running: bool,
     pub frequency: u64,

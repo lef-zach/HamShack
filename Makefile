@@ -28,6 +28,9 @@ dev: backend-dev frontend-dev
 
 # Build for production
 build: backend frontend
+	@echo "📁 Copying frontend to static directory..."
+	mkdir -p backend/static
+	cp -r frontend/dist/* backend/static/
 	@echo "✅ Production build complete"
 
 # Clean build artifacts
@@ -43,6 +46,8 @@ build-pi:
 	RUSTFLAGS="-C target-cpu=cortex-a72" \
 	cargo build --release --target armv7-unknown-linux-gnueabihf
 	cd frontend && npm run build
+	mkdir -p backend/static
+	cp -r frontend/dist/* backend/static/
 
 # Install dependencies
 install:

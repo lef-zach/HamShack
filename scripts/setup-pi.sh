@@ -63,6 +63,13 @@ PATH="$HOME/.cargo/bin:$PATH" make install
 echo "🔨 Building HamShack..."
 PATH="$HOME/.cargo/bin:$PATH" make build
 
+# Ensure static directory exists for frontend
+echo "📁 Setting up static file directory..."
+mkdir -p backend/static
+if [ -d "frontend/dist" ]; then
+    cp -r frontend/dist/* backend/static/
+fi
+
 # Setup configuration
 if [ ! -f ".env" ]; then
     echo "⚙️  Creating configuration file..."

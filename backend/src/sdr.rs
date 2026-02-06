@@ -20,9 +20,9 @@ pub struct SDRConfig {
 
 #[derive(Debug, Clone)]
 pub struct SpectrumData {
-    pub frequency: u64,
+    pub _frequency: u64,
     pub spectrum: Vec<f32>,
-    pub timestamp: Instant,
+    pub _timestamp: Instant,
 }
 
 #[derive(Debug, Clone)]
@@ -30,7 +30,7 @@ pub struct SDRManager {
     config: SDRConfig,
     is_running: bool,
     spectrum_tx: Option<Sender<SpectrumData>>,
-    spectrum_rx: Option<Receiver<SpectrumData>>,
+    _spectrum_rx: Option<Receiver<SpectrumData>>,
 }
 
 impl SDRManager {
@@ -111,7 +111,7 @@ impl SDRManager {
         }
 
         // Get latest spectrum data from receiver
-        match self.spectrum_rx.as_ref().unwrap().try_recv() {
+        match self._spectrum_rx.as_ref().unwrap().try_recv() {
             Ok(data) => Some(data),
             Err(_) => None,
         }

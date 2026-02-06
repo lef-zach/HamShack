@@ -6,9 +6,9 @@ pub struct Config {
     pub host: String,
     pub _callsign: String,
     pub _locator: String,
-    pub sdr_enabled: bool,
-    pub sdr_device: String,
-    pub sdr_sample_rate: u32,
+    pub _sdr_enabled: bool,
+    pub _sdr_device: String,
+    pub _sdr_sample_rate: u32,
 }
 
 impl Config {

@@ -47,7 +47,7 @@ impl SDRManager {
             },
             is_running: false,
             spectrum_tx: Some(spectrum_tx),
-            spectrum_rx: Some(spectrum_rx),
+            _spectrum_rx: Some(spectrum_rx),
         }
     }
 
@@ -157,9 +157,9 @@ impl SDRThread {
 
             // Send spectrum data
             let spectrum_data = SpectrumData {
-                frequency: self.config.frequency,
+                _frequency: self.config.frequency,
                 spectrum: power_spectrum,
-                timestamp: Instant::now(),
+                _timestamp: Instant::now(),
             };
 
             if self.spectrum_tx.send(spectrum_data).is_err() {
